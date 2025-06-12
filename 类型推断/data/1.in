@@ -1,0 +1,5 @@
+1
+111
+auto xiaohanlin = "k";int a = 1; int b = a; int k = 23432;
+long x = 23847; comb z = {a, b, k};
+comb y = {x, z};

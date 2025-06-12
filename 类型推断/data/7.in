@@ -1,0 +1,12 @@
+1
+228
+auto x = 1;
+int y = 1;
+long z = 72949998234;
+comb a = {1, 2, 3, 4, -1, y, x, {x, y, z, z}};
+int b = 114514;
+int c = 1919810;
+long d = 1145141919810;
+char e = "1";
+comb f = {a, a, {a, {a, {a, a}, a}, a}, a};
+comb g = {a, {f}, f};

@@ -1,0 +1,10 @@
+4
+11
+auto x = };
+19
+no_such_type y = 1;
+22
+long x = 1; int x = 1;
+72
+char x = "x"; int y = 1;
+comb z = {1, 1, 2, 3, {2, 4, {x, y}, 9}, 5, 4};

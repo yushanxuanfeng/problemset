@@ -1,0 +1,8 @@
+Auto int 
+x int 
+y long 
+z comb 4
+ValueError: Signed integer overflow.
+TypeError: Type not supported.
+NameError: Invalid variable name.
+Noit long

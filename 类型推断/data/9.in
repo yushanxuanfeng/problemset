@@ -1,0 +1,5 @@
+1
+48
+auto auto = "";
+comb comb = {auto};
+int x = --1;
