@@ -220,7 +220,7 @@ class Tree {
     std::vector<int> leaves;  ///< The no. of leaves. NOTE that it would be
                               ///< empty UNLESS you call `get_leaves()` method.
     bool weighted = false;  ///< Denoting if the **edges** are weighted or not.
-    using _Tree = Tree;
+    using self = Tree;
     /**
      *  @brief  Initiate Tree object with size `size`.
      *  @param  size The count of the nodes that will be generated.
@@ -241,7 +241,7 @@ class Tree {
      *  @return The graph itself.
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1.
      */
-    inline _Tree sqrt_height_tree(int size) {
+    inline self sqrt_height_tree(int size) {
         init(size);
         std::vector<int> p(size - 1);
         for (int i = 1; i <= size - 2; i++)
@@ -269,7 +269,7 @@ class Tree {
      *  @return The graph itself.
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1.
      */
-    inline _Tree log_height_tree(int size) {
+    inline self log_height_tree(int size) {
         init(size);
         for (int i = 2; i <= size; i++)
             fa.at(i) = rnd.next(1, i - 1);
@@ -281,7 +281,7 @@ class Tree {
      *  @return The graph itself.
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1.
      */
-    inline _Tree chain(int size) {
+    inline self chain(int size) {
         init(size);
         for (int i = 2; i <= size; i++)
             fa.at(i) = i - 1;
@@ -293,7 +293,7 @@ class Tree {
      *  @return The graph itself.
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1.
      */
-    inline _Tree flower(int size) {
+    inline self flower(int size) {
         init(size);
         for (int i = 2; i <= size; i++)
             fa.at(i) = 1;
@@ -305,7 +305,7 @@ class Tree {
      *  @return The graph itself.
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1.
      */
-    inline _Tree n_deg_tree(int size) {
+    inline self n_deg_tree(int size) {
         init(size);
         int flowers_count = rnd.next(1, 10);
         std::vector<int> is_flower(size + 1);
@@ -338,7 +338,7 @@ class Tree {
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1,
      * or chain_percent + flower_percent > 1.
      */
-    inline _Tree chain_and_flower(int size,
+    inline self chain_and_flower(int size,
                                   double chain_percent = 0.3,
                                   double flower_percent = 0.3) {
         ensure(chain_percent + flower_percent <= 1);
@@ -360,7 +360,7 @@ class Tree {
      *  @return The graph itself.
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1.
      */
-    inline _Tree random_shaped_tree(int size) {
+    inline self random_shaped_tree(int size) {
         int idx = rnd.next(6);
         if (idx == 0)
             sqrt_height_tree(size);
@@ -387,7 +387,7 @@ class Tree {
      *  @return The graph itself.
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1.
      */
-    inline _Tree print(int shuffled,
+    inline self print(int shuffled,
                        std::vector<int> weights = std::vector<int>{}) {
         bool output_weight = true;
         if (weights.size() == 0)
@@ -414,7 +414,7 @@ class Tree {
      *  @return The graph itself.
      *  @throw  out_of_range if @a size is an invalid node count, e.g. -1.
      */
-    inline _Tree print_fa(char sep = ' ', char end = '\n') {
+    inline self print_fa(char sep = ' ', char end = '\n') {
         for (int i = 2; i <= n; i++)
             std::cout << fa[i] << sep;
         std::cout << end;
@@ -444,7 +444,7 @@ template <typename _Tp>
 class Array {
    public:
     using _Sequence = std::vector<_Tp>;
-    using _Self = Array<_Tp>;
+    using self = Array<_Tp>;
     int n;            ///< size of the array that generated.
     _Sequence array;  ///< The container of the elements.
     /**
@@ -512,7 +512,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self basic_gen(int size, _Tp wl, _Tp wr) {
+    inline self basic_gen(int size, _Tp wl, _Tp wr) {
         init(size);
         for (int i = 1; i <= size; i++)
             array.at(i) = rnd.next(wl, wr);
@@ -538,7 +538,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self to_diffrence() {
+    inline self to_diffrence() {
         for (int i = n; i >= 1; i--)
             array.at(i) -= array.at(i - 1);
         return *this;
@@ -550,7 +550,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self binary_gen(int size) { return basic_gen(size, 0, 1); }
+    inline self binary_gen(int size) { return basic_gen(size, 0, 1); }
     /**
      *  @brief  Generate an array with size `size`, while its elements are not
      * decreasing.
@@ -560,7 +560,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self ascending_array(int size, _Tp wl, _Tp wr) {
+    inline self ascending_array(int size, _Tp wl, _Tp wr) {
         init(size);
         basic_gen(size, wl, wr);
         (*this).sort(), (*this).shuffle();
@@ -575,7 +575,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self decending_array(int size, _Tp wl, _Tp wr) {
+    inline self decending_array(int size, _Tp wl, _Tp wr) {
         ascending_array(size, wl, wr);
         reverse();
         return *this;
@@ -590,7 +590,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self constant_sum(int size,
+    inline self constant_sum(int size,
                               _Tp sum,
                               bool AcceptZero = true,
                               bool AcceptNegative = true) {
@@ -614,7 +614,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self perturbe() {
+    inline self perturbe() {
         Array<_Tp> tmp_arr;
         tmp_arr.constant_sum(n, 0);
         for (int i = 1; i <= n; i++)
@@ -627,7 +627,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self permutation(int size) {
+    inline self permutation(int size) {
         init(size);
         array = rnd.perm(size, 1);
         return *this;
@@ -640,7 +640,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self generate_function(int size,
+    inline self generate_function(int size,
                                    int (*GenerateFunction)(int),
                                    int begin = 1) {
         init(size);
@@ -656,7 +656,7 @@ class Array {
      *  @return The array itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self generate_iterate_function(int size,
+    inline self generate_iterate_function(int size,
                                            int (*IterateFunction)(int),
                                            int begin = 1) {
         init(size);
@@ -665,7 +665,7 @@ class Array {
             array.at(i) = IterateFunction(array.at(i - 1));
         return *this;
     }
-    inline _Self randomly_insert(int size, int num) {
+    inline self randomly_insert(int size, int num) {
         while (size-- > 0)
             array[rnd.next(1, n)] = num;
         return *this;
@@ -674,7 +674,7 @@ class Array {
 
 class Graph {
    public:
-    using _Self = Graph;
+    using self = Graph;
     int n;                ///< The count of points in the graph.
     int m;                ///< The count of edges in the graph.
     bool directed;        ///< Denoting if the **edges** are directed or not.
@@ -697,7 +697,7 @@ class Graph {
      *  @return The graph itself.
      *  @throw  It throws what the _Sequence throws.
      */
-    inline _Self add(Graph rhs) {
+    inline self add(Graph rhs) {
         int offset = n;
         n += rhs.n, m += rhs.m;
         for (pii edge : rhs.edges)
@@ -708,7 +708,7 @@ class Graph {
         Graph g = *this;
         return g.add(rhs);
     }
-    inline _Self operator+=(Graph rhs) { return add(rhs); }
+    inline self operator+=(Graph rhs) { return add(rhs); }
     /**
      *  @brief  init the whole graph with the size of `size`, and direct
      * `directed_graph`.
@@ -745,7 +745,7 @@ class Graph {
      *  @return no return.
      *  @throw  It throws what the std::set throws.
      */
-    inline _Self randomly_gen(int size,
+    inline self randomly_gen(int size,
                               int edges_count,
                               bool directed_graph = false) {
         m = edges_count;
@@ -767,7 +767,7 @@ class Graph {
      *  @return no return.
      *  @throw  It throws what the std::set throws.
      */
-    inline _Self DAG(int size, int edges_count, bool ensure_connected = true) {
+    inline self DAG(int size, int edges_count, bool ensure_connected = true) {
         m = edges_count;
         std::vector<int> a(size + 1);
         std::iota(a.begin(), a.end(), 0);
@@ -801,7 +801,7 @@ class Graph {
      *  @throw  It throws what the std::set throws.
      */
 
-    inline _Self forest(int size, int cnt = -1) {
+    inline self forest(int size, int cnt = -1) {
         cnt = ~cnt ? cnt : rnd.next(1, std::min(std::max(n / 1000, 10), size));
         Tree tr;
         tr.random_shaped_tree(size);
