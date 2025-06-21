@@ -1,4 +1,4 @@
-#include "../generator/generator.h"
+#include "../generator.h"
 
 using ull = unsigned long long;
 

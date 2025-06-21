@@ -14,7 +14,7 @@
  *
  * Here is an example of a generator using CPgen:
  * ```cpp
- * #include "../generator/generator.h"
+ * #include "generator.h"
  *
  * int main(int argc, char** argv) {
  *     registerGen(argc, argv, 1);
